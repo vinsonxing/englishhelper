@@ -1,10 +1,12 @@
 from bs4 import BeautifulSoup
-from model.translation_helper import TranslationHelper
+
 from entity.translation import Translation
+from model.dict.translation_helper import TranslationHelper
 
 
 class TranslationExtractor:
-    def __init__(self, content, helper):
+    def __init__(self, word, content, helper):
+        self.__word = word
         self.__content = content
         if not isinstance(helper, TranslationHelper):
             raise TypeError
@@ -40,4 +42,5 @@ class TranslationExtractor:
         m = self.get_meanings()
         translation.pronounces = p
         translation.meanings = m
+        translation.word = self.__word
         return translation

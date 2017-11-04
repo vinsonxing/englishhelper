@@ -5,6 +5,7 @@ class Translation(Jsonable):
     def __init__(self):
         self.__pronounces = []
         self.__meanings = []
+        self.__word = ""
 
     @property
     def pronounces(self):
@@ -13,6 +14,14 @@ class Translation(Jsonable):
     @pronounces.setter
     def pronounces(self, p):
         self.__pronounces = p
+
+    @property
+    def word(self):
+        return self.__word
+
+    @word.setter
+    def word(self, w):
+        self.__word = w
 
     @property
     def meanings(self):
@@ -27,6 +36,7 @@ class Translation(Jsonable):
 
     def to_json(self):
         j = {}
-        j['meanings'] = self.meanings
-        j['pronounces'] = self.pronounces
+        j['word'] = self.__word
+        j['meanings'] = list(filter(None, self.meanings))
+        j['pronounces'] = list(filter(None, self.pronounces))
         return j

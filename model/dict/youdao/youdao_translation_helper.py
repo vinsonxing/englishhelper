@@ -1,4 +1,4 @@
-from model.translation_helper import TranslationHelper
+from model.dict.translation_helper import TranslationHelper
 
 
 class YouDaoTranslationHelper(TranslationHelper):
